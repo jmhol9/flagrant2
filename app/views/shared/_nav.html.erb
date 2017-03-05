@@ -1,9 +1,8 @@
 <% if params[:controller] != 'statics' %>
+  <p><img src="http://i.imgur.com/WWe6IMs.png" width="25" style="vertical-align: text-bottom;"> SSNCAABBP |
   <% if logged_in? %>
-    <p><img src="http://i.imgur.com/WWe6IMs.png" width="25" style="vertical-align: text-bottom;"> SSNCAABBP |
-      <%= link_to "Log Out", session_url, method: :delete %></p>
+    <%= link_to "Log Out", session_url, method: :delete %></p>
   <% else %>
-    <p><img src="http://i.imgur.com/WWe6IMs.png" width="25" style="vertical-align: text-bottom;"> SSNCAABBP |
     <%= link_to "Log In", new_session_url %> |
     <%= link_to "Sign Up", new_user_url %></p>
   <% end %>

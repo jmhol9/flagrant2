@@ -1,6 +1,8 @@
 <%= @tournament.name %>
 <% if @current_user_has_entered %>
-    YOU IN
+    <% @entered_users.each do |user| %>
+        <p><%= user.name %>, <%= user.city %></p>
+    <% end %>
 <% else %>
     <%= form_tag entries_path do %>
         <article>
@@ -17,7 +19,7 @@
 
         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                 data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                data-description="A month's subscription"
+                data-description="Enter <%= @tournament.name %>"
                 data-amount="1000"
                 data-locale="auto">
         </script>
