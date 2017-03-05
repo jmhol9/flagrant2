@@ -1,0 +1,12 @@
+<table>
+    <% @tournaments.each do |tournament| %> 
+    <tr>
+        <td>
+          <%= tournament.name %>  
+        </td>
+        <td>
+            <%= link_to "LINK", tournament_url(tournament) %>
+        </td>
+    </tr>
+    <% end %>
+</table>

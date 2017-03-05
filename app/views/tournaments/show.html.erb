@@ -1,0 +1,25 @@
+<%= @tournament.name %>
+<% if @current_user_has_entered %>
+    YOU IN
+<% else %>
+    <%= form_tag entries_path do %>
+        <article>
+            <% if flash[:error].present? %>
+            <div id="error_explanation">
+                <p><%= flash[:error] %></p>
+            </div>
+            <% end %>
+            <label class="amount">
+            <span>Amount: $10.00</span>
+            </label>
+            <input type="hidden" name="entry[tournament_id]" value="<%= @tournament.id %>" id="tournament_id">
+        </article>
+
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-description="A month's subscription"
+                data-amount="1000"
+                data-locale="auto">
+        </script>
+    <% end %>
+<% end %>
