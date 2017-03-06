@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+
+    &--homepage {
+        color: #eee;
+        min-height: 100vh;
+        background-image: url($image-src--homepage-url);
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+.container__col {
+    flex-basis: 100%;
+}

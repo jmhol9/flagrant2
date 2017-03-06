@@ -1,0 +1,33 @@
+.button {
+    border: 2px solid $black;
+    border-radius: 4px;
+    background-color: $white;
+    color: $black;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold; 
+    min-width: 56px;
+    padding: 0.8rem;
+    text-decoration: none;
+    transition: all .15s linear;
+
+    &:focus,
+    &:hover {
+        border-color: $red;
+        box-shadow: 0 0 0 3px $red;
+        color: $red;
+    }
+
+    &--dark {
+        color: $white;
+        background-color: $red--dark;
+        border-color: $red--dark;
+
+        &:focus,
+        &:hover {
+            border-color: $red;
+            box-shadow: 0 0 0 3px $red;
+            color: $white;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+.h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+
+    &--light {
+        color: $white;
+        background: $black--true;
+    }
+}
+
+.link,
+.link:hover,
+.link:active,
+.link:visited {
+    color: inherit;
+}
