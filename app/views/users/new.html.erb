@@ -1,27 +1,22 @@
 <h2>Sign Up</h2>
-<form action="<%= users_url %>" method="POST">
+<form action="<%= users_url %>" method="POST" class="form form--centered">
   <%= auth_token %>
-  <p>
-    <label for="name">Your Name</label>
-    <input type="text" name="user[name]" value="<%= @user.name %>" id="name">
-  </p>
-  <p>
-    <label for="team_name">Your Team Name</label>
-    <input type="text" name="user[team_name]" value="<%= @user.team_name %>" id="team_name">
-  </p>
-  <p>
-    <label for="team_name">Your City of Residence</label>
-    <input type="text" name="user[city]" value="<%= @user.city%>" id="city">
-  </p>
-  <p>
-    <label for="email">Email</label>
-    <input type="email" name="user[email]" value="<%= @user.email %>" id="email">
-  </p>
-  <p>
-    <label for="password">Password</label>
-    <input type="password" name="user[password]" value="<%= @user.password %>" id="password">
-  </p>
-  <p>
-    <input type="submit" value="Sign Up" id="sign_up">
+
+    <label for="email" class="input__label">Email</label>
+    <input type="email" required placeholder="Your Email" name="user[email]" value="<%= @user.email %>" id="email" class="input">
+
+    <label for="name" class="input__label">Your Name</label>
+    <input type="text" required placeholder="Your Name" name="user[name]" value="<%= @user.name %>" id="name" class="input">
+
+    <label for="team_name" class="input__label">Your Team Name</label>
+    <input type="text" required placeholder="Your Team Name" name="user[team_name]" value="<%= @user.team_name %>" id="team_name" class="input">
+
+    <label for="team_name" class="input__label">Your City of Residence</label>
+    <input type="text" required placeholder="Your City" name="user[city]" value="<%= @user.city%>" id="city" class="input">
+    
+    <label for="password" class="input__label">Password</label>
+    <input type="password" required placeholder="Password" name="user[password]" value="<%= @user.password %>" id="password" class="input">
+
+    <input type="submit" value="Sign Up" id="sign_up" class="button">
   </p>
 </form>

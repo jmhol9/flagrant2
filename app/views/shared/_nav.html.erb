@@ -1,5 +1,5 @@
 <% if params[:controller] != 'statics' %>
-  <p><img src="http://i.imgur.com/WWe6IMs.png" width="25" style="vertical-align: text-bottom;"> SSNCAABBP |
+  <p><img src="http://i.imgur.com/WWe6IMs.png" width="25" style="vertical-align: text-bottom;"> <%= ENV["app_name"] %> |
   <% if logged_in? %>
     <%= link_to "Log Out", session_url, method: :delete %></p>
   <% else %>

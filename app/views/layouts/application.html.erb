@@ -10,8 +10,10 @@
 
   <body>
     
-  <div class="container">
-    <p><%= render 'shared/nav' %></p>
+  <div class="container<% if external_page? %> container--homepage<% end %>">
+    <% if params[:controller] != 'statics' %>
+      <p><%= render 'shared/nav' %></p>
+    <% end %>
 
     <%= yield %>
   </div>

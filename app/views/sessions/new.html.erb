@@ -1,15 +1,13 @@
-<h1>Log In</h1>
-<form action="<%= session_url %>" method="POST">
+<h1 class="h1 h1--light">Log In</h1>
+<form action="<%= session_url %>" method="POST" class="container__col form form--centered">
   <%= auth_token %>
-  <p>
-    <label for="email">Email</label>
-    <input type="text" name="user[email]" id="email">
-  </p>
-  <p>
-    <label for="password">Password</label>
-    <input type="password" name="user[password]" id="password">
-  </p>
-  <p>
-    <input type="submit" value="Log In">
-  </p>
+  <div>
+    <label for="email" class="input__label">Email</label>
+    <input type="text" placeholder="Email" name="user[email]" id="email" class="input">
+  </div>
+  <div>
+    <label for="password" class="input__label">Password</label>
+    <input type="password" placeholder="Password" name="user[password]" id="password" class="input">
+  </div>
+    <input type="submit" value="Log In" class="button">
 </form>
