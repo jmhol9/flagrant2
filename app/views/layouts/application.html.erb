@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Points</title>
+    <title>FLAGRANT 2</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -12,7 +12,7 @@
     
   <div class="container<% if external_page? %> container--homepage<% end %>">
     <% if params[:controller] != 'statics' %>
-      <p><%= render 'shared/nav' %></p>
+      <%= render 'shared/nav' %>
     <% end %>
 
     <%= yield %>

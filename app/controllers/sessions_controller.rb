@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
             login!(@user)
             redirect_to tournaments_url
         else
-            flash.now[:errors] = ["invalid email / password combo"]
+            flash.now[:errors] = ["Invalid email / password combo."]
             render :new
         end
     end

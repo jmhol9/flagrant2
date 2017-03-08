@@ -1,5 +1,10 @@
 .nav {
     align-self: center;
+    margin-bottom: 1.6rem;
+
+    &--title {
+        margin-bottom: 1.6rem;
+    }
 }
 
 .nav__link {

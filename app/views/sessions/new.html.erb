@@ -1,4 +1,11 @@
 <h1 class="h1 h1--light h1--center">Log In</h1>
+<% if response_has_errors? %>
+  <% flash.now[:errors].each do |error| %>
+  <div class="alert alert--danger">
+      <span class="body body--bold">Error:</span> <%= error %>
+  </div>
+  <% end %>
+<% end %>
 <form action="<%= session_url %>" method="POST" class="container__col form form--centered">
   <%= auth_token %>
   <div>

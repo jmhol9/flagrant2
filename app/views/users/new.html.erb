@@ -1,21 +1,59 @@
-<h1 class="h1 h1--light h1--center">Sign Up</h1>
+<span class="h1 h1--light h1--center">Sign Up</span>
 <form action="<%= users_url %>" method="POST" class="form form--centered">
   <%= auth_token %>
 
     <label for="email" class="input__label">Email</label>
-    <input type="email" required placeholder="Your Email" name="user[email]" value="<%= @user.email %>" id="email" class="input">
+    <input
+      type="email" 
+      required 
+      placeholder="Your Email" 
+      name="user[email]" 
+      value="<%= @user.email %>" 
+      id="email" 
+      class="input">
 
     <label for="name" class="input__label">Your Name</label>
-    <input type="text" required placeholder="Your Name" name="user[name]" value="<%= @user.name %>" id="name" class="input">
+    <input 
+      type="text" 
+      required 
+      autocomplete="off" 
+      placeholder="Your Name" 
+      name="user[name]" 
+      value="<%= @user.name %>" 
+      id="name" 
+      class="input">
 
     <label for="team_name" class="input__label">Your Team Name</label>
-    <input type="text" required placeholder="Your Team Name" name="user[team_name]" value="<%= @user.team_name %>" id="team_name" class="input">
+    <input 
+      type="text" 
+      required 
+      autocomplete="off" 
+      placeholder="Your Team Name" 
+      name="user[team_name]" 
+      value="<%= @user.team_name %>" 
+      id="team_name" 
+      class="input">
 
     <label for="team_name" class="input__label">Your City of Residence</label>
-    <input type="text" required placeholder="Your City" name="user[city]" value="<%= @user.city%>" id="city" class="input">
+    <input 
+      type="text" 
+      required 
+      autocomplete="off" 
+      placeholder="Your City" 
+      name="user[city]" 
+      value="<%= @user.city%>" 
+      id="city" 
+      class="input">
     
     <label for="password" class="input__label">Password</label>
-    <input type="password" required placeholder="Password" name="user[password]" value="<%= @user.password %>" id="password" class="input">
+    <input 
+      type="password" 
+      required 
+      placeholder="Password" 
+      name="user[password]" 
+      value="<%= @user.password %>" 
+      id="password" 
+      class="input">
 
     <input type="submit" value="Sign Up" id="sign_up" class="button">
   </p>

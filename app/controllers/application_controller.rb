@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-   helper_method :current_user, :external_page?, :logged_in?, :admin?
+   helper_method :current_user, :external_page?, :logged_in?, :response_has_errors?, :admin?
 
   def current_user
     @current_user ||= User.find_by(session_token: session[:session_token])
@@ -29,6 +29,10 @@ class ApplicationController < ActionController::Base
 
   def admin?
     current_user.admin
+  end
+
+  def response_has_errors?
+    !flash.now[:errors].nil?
   end
 
   def redirect_unless_logged_out

@@ -9,7 +9,7 @@
             <td class="table__item">
             <%= tournament.name %>  
             </td>
-            <td class="table__item">
+            <td class="table__item table__item--right">
                 <% if current_user.registered?(tournament) %>
                     <%= link_to "Standings", tournament_url(tournament), class: "link" %>
                 <% else %>
