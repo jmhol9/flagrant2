@@ -1,0 +1,16 @@
+<div class="container__col--single">
+    <% @updates.each do |update| %>
+        <div class="post">
+            <div class="h3"><%= update.title %></div>
+            <p class="body body--italic">Posted by <%= update.author.name %> on <%= time_tag update.updated_at %><p>
+            <%= simple_format(update.body) %>
+            <% if !logged_in? %>
+                <div class="body body--centered">
+                    <%= link_to "Sign Up", new_user_url, { :class=>"button" } %>
+                    <%= link_to "Log In", new_session_url, { :class=>"button" } %>
+                </div>
+            <% end %>
+        </div>
+    <% end %>
+</div>
+        
