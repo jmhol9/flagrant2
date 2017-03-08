@@ -1,0 +1,14 @@
+.alert {
+    border-radius: 2px;
+    border-width: 1px;
+    border-style: solid;
+    padding: 0.8rem;
+    margin: 0.8rem 0;
+    width: 100%;
+
+    &--danger {
+        background-color: $red--light;
+        border-color: $red--light;
+        color: $red;
+    }
+}

@@ -1,0 +1,47 @@
+.table {
+    border-collapse: collapse;
+    color: $black;
+    width: 100%;
+}
+
+.table__row {
+    border-bottom: 1px solid $black;
+
+    &--title {
+        border-bottom: 4px solid $black;
+    }
+}
+
+.table__title {
+    font-weight: bold;
+    text-align: left;
+    padding: 0.8em 0.8em 0.8em 0.2em;
+}
+
+
+.table__item {
+    padding: 0.8em 0.8em 0.8em 0.2em;
+
+    &--right {
+        text-align: right;
+    }
+}
+
+.table__team-name {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.table__user-name {
+    font-size: 0.8rem
+}
+
+.table__city {
+    background-color: $blue;
+    border-radius: 2px;
+    color: $white;
+    font-size: 0.6rem;
+    padding: 0.4rem 0.4rem 0.3rem;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+}

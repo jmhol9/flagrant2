@@ -1,18 +1,20 @@
 .container {
+    margin: 0 auto;
+    max-width: $content-width--max;
     display: flex;
     flex-direction: column;
-    align-items: center;
     padding: 20px;
 
     &--homepage {
-        color: #eee;
+        color: $white;
         min-height: 100vh;
-        background-image: url($image-src--homepage-url);
-        background-size: cover;
-        background-position: center;
     }
 }
 
 .container__col {
     flex-basis: 100%;
+
+    &--single {
+        align-self: stretch;
+    }
 }

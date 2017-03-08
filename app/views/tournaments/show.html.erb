@@ -1,9 +1,16 @@
-<%= @tournament.name %>
-<% if @current_user_has_entered %>
-    <% @entered_users.each do |user| %>
-        <p><%= user.name %>, <%= user.city %></p>
-    <% end %>
-<% else %>
+<h2 class="h3 h3--uppercase">
+    <%= @tournament.name %>
+</h2>
+
+<% if !@current_user_has_entered %>
+<div class="form form--registration">
+    <p class="body body--margin-0">
+        <span class="body body--bold">
+            ANTE UP.
+        </span>
+        <br />
+            <span>You aren't in this pool yet.</span>
+    </p>
     <%= form_tag entries_path do %>
         <article>
             <% if flash[:error].present? %>
@@ -12,7 +19,7 @@
             </div>
             <% end %>
             <label class="amount">
-            <span>Amount: $10.00</span>
+            <span class="form__label">Entry: $10</span>
             </label>
             <input type="hidden" name="entry[tournament_id]" value="<%= @tournament.id %>" id="tournament_id">
         </article>
@@ -24,4 +31,36 @@
                 data-locale="auto">
         </script>
     <% end %>
+</div>
 <% end %>
+
+<% if @current_user_has_entered %>
+<div class="alert alert--danger">
+    <span class="body body--bold">Hold up.</span> Picks for this tournaments aren't open now. Come back Monday!
+</div>
+<% end %>
+
+<table class="table">
+    <tr class="table__row--title">
+        <td class="table__title">Teams</td>
+        <td class="table__title">Score</td>
+    </tr>
+    <% @entries.each do |entry| %> 
+    <tr class="table__row">
+        <td class="table__item">
+            <span class="table__team-name">
+                <%= entry.user.team_name %> 
+            </span>
+            <span class="table__user-name">
+                <%= entry.user.name %> 
+            </span>
+            <span class="table__city">
+                <%= entry.user.city%>  
+            </span>
+        </td>
+        <td class="table__item table__item--right">
+            <%= entry.points %>
+        </td>
+    </tr>
+    <% end %>
+</table>

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     before_action :redirect_if_logged_out, only: [:show, :index]
 
     def index
-        @users = User.all.sort
+        redirect_to tournaments_url
     end
 
     def new
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.find(params[:id])
+        redirect_to tournaments_url
     end
 
     def scoreboard

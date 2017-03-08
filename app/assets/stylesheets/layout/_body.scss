@@ -1,0 +1,7 @@
+.body {
+    &--bg-image {
+        background-image: url($image-src--homepage-url);
+        background-size: cover;
+        background-position: center;
+    }
+}

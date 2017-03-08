@@ -1,0 +1,33 @@
+.nav {
+    align-self: center;
+}
+
+.nav__link {
+    color: $red;
+    padding: 0.8em;
+    text-decoration: none;
+
+    &:active,
+    &:visited,
+    &:hover {
+        color: $red;
+    }
+
+    &:hover {
+        border-bottom: 4px solid $red;
+    }
+
+    &--title {
+        color: $white;
+        background-color: $black--true;
+
+        &:active,
+        &:visited {
+            color: $white;
+        }
+
+        &:hover {
+            border-bottom: 4px solid $white;
+        }
+    }
+}

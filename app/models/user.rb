@@ -11,6 +11,10 @@ class User < ApplicationRecord
 
   attr_reader :password
 
+  def registered?(tournament)
+    tournaments.include?(tournament)
+  end
+
   def password=(password)
     @password = password.strip
     self.password_digest = BCrypt::Password.create(password).to_s

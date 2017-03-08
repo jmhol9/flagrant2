@@ -9,8 +9,9 @@ class TournamentsController < ApplicationController
         @tournament = Tournament.find(params[:id])
         @current_user_has_entered = current_user.tournaments.include?(@tournament)
 
-        if @current_user_has_entered
-            @entered_users = @tournament.users
-        end
+        @entries = @tournament
+                        .entries
+                        .includes(:user)
+                        .sort_by { |entry| -entry[:points] }
     end
 end

@@ -1,12 +1,22 @@
-<table>
-    <% @tournaments.each do |tournament| %> 
-    <tr>
-        <td>
-          <%= tournament.name %>  
-        </td>
-        <td>
-            <%= link_to "LINK", tournament_url(tournament) %>
-        </td>
-    </tr>
-    <% end %>
-</table>
+<div class="container__col--single">
+    <table class="table">
+        <tr class="table__row--title">
+            <td class="table__title">Current Tournaments</td>
+            <td></td>
+        </tr>
+        <% @tournaments.each do |tournament| %> 
+        <tr class="table__row">
+            <td class="table__item">
+            <%= tournament.name %>  
+            </td>
+            <td class="table__item">
+                <% if current_user.registered?(tournament) %>
+                    <%= link_to "Standings", tournament_url(tournament), class: "link" %>
+                <% else %>
+                    <%= link_to "Register", tournament_url(tournament), class: "link" %>
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+</div>

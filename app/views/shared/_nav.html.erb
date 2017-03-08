@@ -1,10 +1,9 @@
-<% if params[:controller] != 'statics' %>
-  <p><img src="http://i.imgur.com/WWe6IMs.png" width="25" style="vertical-align: text-bottom;"> <%= ENV["app_name"] %> |
+<div class="nav">
+  <%= link_to ENV["app_name"], root_url, class: "nav__link nav__link--title" %>
   <% if logged_in? %>
-    <%= link_to "Log Out", session_url, method: :delete %></p>
+    <%= link_to "Log Out", session_url, method: :delete, class: "nav__link" %>
   <% else %>
-    <%= link_to "Log In", new_session_url %> |
-    <%= link_to "Sign Up", new_user_url %></p>
+    <%= link_to "Log In", new_session_url, class: "nav__link" %>
+    <%= link_to "Sign Up", new_user_url, class: "nav__link" %>
   <% end %>
-<% end %>
-<hr>
+</div>
