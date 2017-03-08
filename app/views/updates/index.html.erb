@@ -2,7 +2,7 @@
     <% @updates.each do |update| %>
         <div class="post">
             <div class="h3"><%= update.title %></div>
-            <p class="body body--italic">Posted by <%= update.author.name %> on <%= time_tag update.updated_at %><p>
+            <p class="body body--italic body--margin-0">Posted by <%= update.author.name %> on <%= time_tag update.updated_at %><p>
             <%= simple_format(update.body) %>
             <% if !logged_in? %>
                 <div class="body body--centered">
