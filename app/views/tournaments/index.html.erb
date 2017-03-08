@@ -13,7 +13,7 @@
                 <% if current_user.registered?(tournament) %>
                     <%= link_to "Standings", tournament_url(tournament), class: "link" %>
                 <% else %>
-                    <%= link_to "Register", tournament_url(tournament), class: "link" %>
+                    <%= link_to "Enter", tournament_url(tournament), class: "link" %>
                 <% end %>
             </td>
         </tr>

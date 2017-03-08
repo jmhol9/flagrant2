@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   # splash page
   resources :statics, only:[:index]
 
-  # blogs
+  # blogs / info
   resources :updates, only: [:index]
+  resources :rules, only: [:index]
 
   # organization stuff
   resources :tournaments, only: [:index, :show]
