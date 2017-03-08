@@ -8,6 +8,5 @@ class CreateUpdates < ActiveRecord::Migration[5.0]
     end
 
     add_index :updates, :author_id
-    drop_table :blogs
   end
 end
