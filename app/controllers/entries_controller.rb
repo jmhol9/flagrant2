@@ -1,4 +1,6 @@
 class EntriesController < ApplicationController
+    before_action :redirect_if_logged_out
+
     def create 
         tournament = Tournament.find(params[:entry][:tournament_id]);
 

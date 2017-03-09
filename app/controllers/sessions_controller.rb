@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+    before_action :redirect_unless_logged_out, only: [:new, :create]
+    before_action :redirect_if_logged_out, only: [:destroy]
+
     def new
 
     end
