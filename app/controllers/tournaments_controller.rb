@@ -12,6 +12,7 @@ class TournamentsController < ApplicationController
         @entries = @tournament
                         .entries
                         .includes(:user)
+                        .reject { |entry| entry.user.nil? }
                         .sort_by { |entry| -entry[:points] }
     end
 end
