@@ -5,7 +5,7 @@ class PicksController < ApplicationController
         @tournament = Tournament.find(params[:tournament_id])
         redirect_if_not_registered(@tournament)
 
-        @rounds = @tournament.rounds.select { |round| round.picks_open? }
+        @rounds = @tournament.rounds.select { |round| round.picks_open? }.sort
         @teams = Team.all.sort_by { |team| team.seed }
         @entry = Entry.includes(:picks).find_by(
             tournament_id: @tournament.id,
