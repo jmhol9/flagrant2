@@ -49,12 +49,4 @@ class PicksController < ApplicationController
     def pick_params
         params.require(:pick).permit(:team_id, :points, :round_id, :multiplier)
     end
-
-    def redirect_if_not_registered(tournament)
-        if !current_user.registered?(tournament)
-            flash[:errors] = "You're not registered for this tournament"
-            redirect_to tournament_url(tournament)
-            return
-        end
-    end
 end
