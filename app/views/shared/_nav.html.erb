@@ -7,8 +7,8 @@
   <% end %>
     <%= link_to "Rules", rules_url, class: "nav__link" %>
   <% if logged_in? %>
-    <%= link_to "Tournaments", tournaments_url, class: "nav__link" %>
-    <%= link_to "Commish's Corner", updates_url, class: "nav__link" %>
+    <%= link_to "Standings", tournament_url(1), class: "nav__link" %>
+    <%= link_to "Picks", tournament_picks_url(1), class: "nav__link" %>
     <%= link_to "Log Out", session_url, method: :delete, class: "nav__link" %>
   <% else %>
     <%= link_to "Log In", new_session_url, class: "nav__link" %>

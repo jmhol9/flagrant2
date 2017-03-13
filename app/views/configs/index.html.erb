@@ -6,3 +6,40 @@
         2. <%= link_to "Create Teams", teams_url, class: "link" %>
     </div>
 </div>
+<br>
+<br>
+<br>
+<h3 class="h3">All Picks</h3>
+<table class="table">
+    <tr class="table__row--title">
+        <td class="table__title">User <span class="body body--italic"></span></td>
+        <td class="table__item table__title">Round</td>
+        <td class="table__item table__title">Team</td>
+        <td class="table__item table__item--right table__title">Points</td>
+        <td class="table__item table__item--right table__title">Multiplier</td>
+    </tr>
+    <% @picks.each_with_index do |pick| %> 
+    <tr class="table__row">
+        <td class="table__item">
+            <span class="table__team-name">
+                <%= pick.user.team_name %> 
+            </span>
+            <span class="table__user-name">
+                <%= pick.user.name %> 
+            </span>
+        </td>
+        <td class="table__item">
+            <%= pick.round.name %>
+        </td>
+        <td class="table__item">
+            <%= pick.team.name %>
+        </td>
+        <td class="table__item table__item--right">
+            <%= pick.points %>
+        </td>
+        <td class="table__item table__item--right">
+            <% if pick.multiplier == 2 %><span class="body body--bold">x2</span><% end %>
+        </td>
+    </tr>
+    <% end %>
+</table>
