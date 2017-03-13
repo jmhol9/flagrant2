@@ -37,7 +37,7 @@
 <% if @current_user_has_entered %>
     <% if @tournament.picks_open? %>
     <div class="alert alert--info">
-        <span class="body body--bold">Picks are open!</span> <%= link_to "Click here", tournament_picks_url(@tournament), class: "link" %> to pick now.
+        <span class="body body--bold">Picks are open!</span> Make (or edit) your picks <%= link_to "here", tournament_picks_url(@tournament), class: "link" %>.
     </div>
     <% else %>
     <div class="alert alert--danger">
