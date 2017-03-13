@@ -2,6 +2,9 @@
   <%= link_to ENV["app_name"], root_url, class: "nav__link nav__link--title" %>
 </div>
 <div class="nav">
+  <% if !current_user.nil? && admin? %>
+    <%= link_to "Config", configs_url, class: "nav__link" %>
+  <% end %>
     <%= link_to "Rules", rules_url, class: "nav__link" %>
   <% if logged_in? %>
     <%= link_to "Tournaments", tournaments_url, class: "nav__link" %>

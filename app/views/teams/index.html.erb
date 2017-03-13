@@ -1,0 +1,59 @@
+<div class="container__col--single">
+    <span class="h3">Create Teams (admin only)</span>
+    <form action="<%= teams_url %>" method="POST" class="form">
+        <%= auth_token %>
+        <label for="name" class="input__label">Name</label>
+        <input
+            type="text" 
+            required 
+            placeholder="Team Name" 
+            name="team[name]" 
+            value="<%= @team.name %>" 
+            id="name" 
+            autocomplete="off" 
+            class="input">
+
+        <label for="seed" class="input__label">Seed</label>
+        <input 
+        name="team[seed]" 
+        value="<%= @team.seed %>" 
+        id="seed" 
+        type="number"
+        min="1"
+        max="16" 
+        required 
+        autocomplete="off" 
+        placeholder="Seed"
+        class="input">
+
+        <label for="region" class="input__label">Region</label>
+        <select name="team[region]" value="<%= @team.region %>" id="region" required>
+            <option value="East">East</option>
+            <option value="South">South</option>
+            <option value="Midwest">Midwest</option>
+            <option value="West">West</option>
+        </select>
+        <input type="submit" value="Create Team" id="create" class="button">
+    </p>
+    </form>
+</div>
+<table class="table">
+    <tr class="table__row--title">
+        <td class="table__title">Seed</td>
+        <td class="table__item">Name</td>
+        <td class="table__item">Region</td>
+    </tr>
+    <% @teams.each do |team| %> 
+    <tr class="table__row">
+        <td class="table__item">
+            <%= team.seed %> 
+        </td>
+        <td class="table__item">
+            <%= team.name %> 
+        </td>
+        <td class="table__item">
+            <%= team.region %>  
+        </td>
+    </tr>
+    <% end %>
+</table>

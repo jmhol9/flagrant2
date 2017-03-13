@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308141320) do
+ActiveRecord::Schema.define(version: 20170312153823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20170308141320) do
     t.index ["user_id"], name: "index_entries_on_user_id", using: :btree
   end
 
+  create_table "games", force: :cascade do |t|
+    t.integer  "home_team_id"
+    t.integer  "away_team_id"
+    t.integer  "round_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "tournament_id", null: false
+    t.index ["tournament_id"], name: "index_games_on_tournament_id", using: :btree
+  end
+
   create_table "picks", force: :cascade do |t|
     t.integer  "team_id",    null: false
     t.integer  "entry_id",   null: false
@@ -31,6 +41,7 @@ ActiveRecord::Schema.define(version: 20170308141320) do
     t.float    "points",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "multiplier", null: false
     t.index ["entry_id"], name: "index_picks_on_entry_id", using: :btree
     t.index ["round_id"], name: "index_picks_on_round_id", using: :btree
     t.index ["team_id"], name: "index_picks_on_team_id", using: :btree
@@ -63,6 +74,7 @@ ActiveRecord::Schema.define(version: 20170308141320) do
     t.integer  "seed",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "region",     null: false
   end
 
   create_table "tournaments", force: :cascade do |t|

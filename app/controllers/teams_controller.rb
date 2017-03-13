@@ -2,7 +2,7 @@ class TeamsController < ApplicationController
     before_action :redirect_unless_admin
 
     def index
-        @teams = Team.all.sort_by {|team| team.seed }
+        @teams = Team.all.sort_by {|team| [team.region, team.seed] }
         @team = Team.new
     end
 
@@ -17,15 +17,8 @@ class TeamsController < ApplicationController
         end
     end
 
-    def destroy
-        team = Team.find(params[:id])
-        team.destroy
-        redirect_to teams_url
-    end
-
-
     private
     def team_params
-        params.require(:team).permit(:name, :seed)
+        params.require(:team).permit(:name, :seed, :region)
     end
 end

@@ -1,0 +1,72 @@
+<div class="container__col--single">
+    <span class="h3">Create Games (admin only)</span>
+    <% if flash[:errors] %>
+        <% flash[:errors].each do |error|%>
+            <div class="alert alert--danger">
+                <%= error %>
+            </div>
+        <% end %>
+    <% end %>
+    <form action="<%= games_url %>" method="POST" class="form">
+        <%= auth_token %>
+        <div class="form__row">
+            <label for="name" class="input__label">Home Team</label>
+            <select name="game[home_team_id]" value="<%= @game.home_team_id %>" id="home_team_id" placeholder="Home Team" required>
+                <% @teams.each do |team| %>
+                    <option value="<%= team.id %>">(<%= team.seed %>) <%= team.name %> / <%= team.region %></option>
+                <% end %>
+            </select>
+        </div>
+        <div class="form__row">
+            <label for="name" class="input__label">Away Team</label>
+            <select name="game[away_team_id]" value="<%= @game.away_team_id %>" id="away_team_id" placeholder="Away Team" required>
+                <% @teams.each do |team| %>
+                    <option value="<%= team.id %>">(<%= team.seed %>) <%= team.name %> / <%= team.region %></option>
+                <% end %>
+            </select>
+        </div>
+        <div class="form__row">
+            <label for="name" class="input__label">Round</label>
+            <select name="game[round_id]" value="<%= @game.round_id %>" id="round_id" placeholder="Round" required>
+                <% @rounds.each do |round| %>
+                    <option value="<%= round.id %>"><%= round.name %></option>
+                <% end %>
+            </select>
+        </div>
+        <div class="form__row">
+            <select name="game[tournament_id]" value="<%= @game.tournament_id %>" id="tournament_id" placeholder="Tournament" required>
+                <% @tournaments.each do |tournament| %>
+                    <option value="<%= tournament.id %>"><%= tournament.name %></option>
+                <% end %>
+            </select>
+        </div>
+        <div class="form__row">
+            <input type="submit" value="Create Game" id="create" class="button">
+        </div>
+    </p>
+    </form>
+</div>
+<table class="table">
+    <tr class="table__row--title">
+        <td class="table__title">Round</td>
+        <td class="table__item">Home Team</td>
+        <td class="table__item">Away Team</td>
+        <td class="table__item">Region(s)</td>
+    </tr>
+    <% @games.each do |game| %> 
+    <tr class="table__row">
+        <td class="table__item">
+            <%= game.round.name %> 
+        </td>
+        <td class="table__item">
+            (<%= game.home_team.seed %>) <%= game.home_team.name %> 
+        </td>
+        <td class="table__item">
+            (<%= game.away_team.seed %>) <%= game.away_team.name %> 
+        </td>
+        <td class="table__item">
+            <%= game.home_team.region %> / <%= game.away_team.region %> 
+        </td>
+    </tr>
+    <% end %>
+</table>

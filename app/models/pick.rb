@@ -3,31 +3,29 @@ class Pick < ApplicationRecord
 
     validates :entry_id, :round_id, :team_id, :points, presence: true
     validates :multiplier, inclusion: { in: [1, 2] }
-    validate :bet_limit_half_total_points_per_round, :one_double_per_round, :one_bet_per_team_per_round
+    validate :bet_limit_half_total_points_per_round, :one_double_per_round, :one_bet_per_team_per_round, :no_hedge_bets
 
     belongs_to :entry
     belongs_to :round
     belongs_to :team
 
   def self.user_picks_per_round(user, round)
-    Pick.where(user_id: user.id).where(round_id: round.id).includes(:team)
+    # Pick.where(entry_id: entry.id).where(round_id: round.id).includes(:team)
   end
 
-  def result
-    Result.where(
-      "round_id = ? AND team_id = ?",
-      self.round_id,
-      self.team_id
-      )
-  end
+  # def result
+  #   Result.where(
+  #     "round_id = ? AND team_id = ?",
+  #     self.round_id,
+  #     self.team_id
+  #     )
+  # end
 
   private
   def bet_limit_half_total_points_per_round
-    return unless points.is_a?(Integer)
-    total_points_wagered_round = user.picks.where(round_id: round_id).sum(:points)
-    limit = (user.score / 2)
-    if total_points_wagered_round + points > limit
-      errors[:pick] << ": You can only wager #{limit - total_points_wagered_round} more points in the #{round.name}"
+    total_points_wagered_round = entry.picks.where(round_id: round_id).sum(:points)
+    if total_points_wagered_round + points > entry.round_budget
+      errors[:pick] << ": You can only wager #{entry.round_budget - total_points_wagered_round} more points in the #{round.name}"
     end
   end
 
@@ -40,7 +38,7 @@ class Pick < ApplicationRecord
   def one_double_per_round
     return if self.multiplier == 1
     if Pick.where(
-        user_id: self.user_id,
+        entry_id: self.entry_id,
         round_id: self.round_id,
         multiplier: 2).any?
       errors[:pick] << ": Only one double per round!"
@@ -49,7 +47,7 @@ class Pick < ApplicationRecord
 
   def one_bet_per_team_per_round
     if Pick.where(
-        user_id: self.user_id,
+        entry_id: self.entry_id,
         round_id: self.round_id,
         team_id: self.team_id).any?
       errors[:pick] << ": Already picked that team!"
@@ -58,5 +56,26 @@ class Pick < ApplicationRecord
 
   def ensure_multiplier
     self.multiplier ||= 1
+  end
+
+  def no_hedge_bets
+      game_one = Game.find_by(round_id: self.round_id, home_team_id: self.team_id)
+      game_two = Game.find_by(round_id: self.round_id, away_team_id: self.team_id)
+
+      if game_one.nil? && game_two.nil?
+          return
+      end
+
+      if game_one || game_two
+          other_teams_picked = entry.picks.select { |p| p.round_id == self.round_id }.map(&:team)
+      end
+
+      if game_one && other_teams_picked.include?(game_one.away_team)
+          errors[:pick] << ": No hedge bets! (You already picked #{ game_one.away_team.name }.)"
+      end
+
+      if game_two && other_teams_picked.include?(game_two.home_team)
+          errors[:pick] << ": No hedge bets! (You already picked #{ game_two.home_team.name }.)"
+      end
   end
 end

@@ -1,5 +1,5 @@
 class Round < ApplicationRecord
-    validates :name, :picks_start, :picks_end, presence: true
+    validates :name, :picks_start, :picks_close, presence: true
 
     belongs_to :tournament
     has_many :picks

@@ -11,13 +11,22 @@ Rails.application.routes.draw do
   # splash page
   resources :statics, only:[:index]
 
+  # admin
+  resources :configs, only:[:index]
+
   # blogs / info
   resources :updates, only: [:index]
   resources :rules, only: [:index]
 
   # organization stuff
-  resources :tournaments, only: [:index, :show]
+  resources :tournaments, only: [:index, :show] do 
+    resources :picks
+  end
   resources :entries, only: [:create]
+
+  # game pieces
+  resources :teams, only: [:index, :create]
+  resources :games, only: [:index, :create]
 
   root to: 'statics#index'
 end
