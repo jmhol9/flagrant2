@@ -60,7 +60,7 @@ class Pick < ApplicationRecord
   end
 
   def no_negative_bets
-    if pick.points <= 0
+    if self.points <= 0
       errors[:pick] << ": You have to wager more than 0 points!"
     end
   end
