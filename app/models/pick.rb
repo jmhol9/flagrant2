@@ -3,7 +3,7 @@ class Pick < ApplicationRecord
 
     validates :entry_id, :round_id, :team_id, :points, presence: true
     validates :multiplier, inclusion: { in: [1, 2] }
-    validate :bet_limit_half_total_points_per_round, :one_double_per_round, :one_bet_per_team_per_round, :no_hedge_bets
+    validate :bet_limit_half_total_points_per_round, :one_double_per_round, :one_bet_per_team_per_round, :no_hedge_bets, :no_negative_bets
 
     belongs_to :entry
     belongs_to :round
@@ -57,6 +57,12 @@ class Pick < ApplicationRecord
 
   def ensure_multiplier
     self.multiplier ||= 1
+  end
+
+  def no_negative_bets
+    if pick.points <= 0
+      errors[:pick] << ": You have to wager more than 0 points!"
+    end
   end
 
   def no_hedge_bets
