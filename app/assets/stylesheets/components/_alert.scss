@@ -15,4 +15,10 @@
     &--info {
         border-color: $black;
     }
+
+    &--success {
+        background-color: #16a085;
+        border-color: #1abc9c;
+        color: $white;
+    }
 }

@@ -48,3 +48,11 @@
     color: $red;
     text-decoration: none;
 }
+
+.link.link-white:hover,
+.link.link-white:active,
+.link.link-white:visited, 
+.link.link--white {
+    color: $white;
+    text-decoration: underline
+}
