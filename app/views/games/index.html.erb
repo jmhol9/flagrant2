@@ -12,17 +12,51 @@
         <div class="form__row">
             <label for="name" class="input__label">Home Team</label>
             <select name="game[home_team_id]" value="<%= @game.home_team_id %>" id="home_team_id" placeholder="Home Team" required>
-                <% @teams.each do |team| %>
-                    <option value="<%= team.id %>">(<%= team.seed %>) <%= team.name %> / <%= team.region %></option>
-                <% end %>
+                <optgroup label="East">
+                    <% @teams.select { |t| t.region == "East" }.each do |team| %>
+                        <option value="<%= team.id %>">(<%= team.seed %>) <%= team.name %> / <%= team.region %></option>
+                    <% end %>
+                </optgroup>
+                <optgroup label="Midwest">
+                    <% @teams.select { |t| t.region == "Midwest" }.each do |team| %>
+                        <option value="<%= team.id %>">(<%= team.seed %>) <%= team.name %> / <%= team.region %></option>
+                    <% end %>
+                </optgroup>
+                <optgroup label="South">
+                    <% @teams.select { |t| t.region == "South" }.each do |team| %>
+                        <option value="<%= team.id %>">(<%= team.seed %>) <%= team.name %> / <%= team.region %></option>
+                    <% end %>
+                </optgroup>
+                <optgroup label="West">
+                    <% @teams.select { |t| t.region == "West" }.each do |team| %>
+                        <option value="<%= team.id %>">(<%= team.seed %>) <%= team.name %> / <%= team.region %></option>
+                    <% end %>
+                </optgroup>
             </select>
         </div>
         <div class="form__row">
             <label for="name" class="input__label">Away Team</label>
             <select name="game[away_team_id]" value="<%= @game.away_team_id %>" id="away_team_id" placeholder="Away Team" required>
-                <% @teams.each do |team| %>
-                    <option value="<%= team.id %>">(<%= team.seed %>) <%= team.name %> / <%= team.region %></option>
-                <% end %>
+                <optgroup label="East">
+                    <% @teams.select { |t| t.region == "East" }.each do |team| %>
+                        <option value="<%= team.id %>">(<%= team.seed %>) <%= team.name %> / <%= team.region %></option>
+                    <% end %>
+                </optgroup>
+                <optgroup label="Midwest">
+                    <% @teams.select { |t| t.region == "Midwest" }.each do |team| %>
+                        <option value="<%= team.id %>">(<%= team.seed %>) <%= team.name %> / <%= team.region %></option>
+                    <% end %>
+                </optgroup>
+                <optgroup label="South">
+                    <% @teams.select { |t| t.region == "South" }.each do |team| %>
+                        <option value="<%= team.id %>">(<%= team.seed %>) <%= team.name %> / <%= team.region %></option>
+                    <% end %>
+                </optgroup>
+                <optgroup label="West">
+                    <% @teams.select { |t| t.region == "West" }.each do |team| %>
+                        <option value="<%= team.id %>">(<%= team.seed %>) <%= team.name %> / <%= team.region %></option>
+                    <% end %>
+                </optgroup>
             </select>
         </div>
         <div class="form__row">
