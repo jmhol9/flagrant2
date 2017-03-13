@@ -7,9 +7,14 @@
             </div>
         <% end %>
     <% end %>
-    <ul>
+    <ul class="alert alert--danger alert--center">
         <% @rounds.each do |round| %>
-            <li><%= round.name %>: <%= @entry.round_budget_remaining(round) %> pts available</li>
+            <span>
+                <span class="body body--bold body--black">
+                    <%= round.name %>: 
+                </span>
+                <%= @entry.round_budget_remaining(round) %> pts available</li>
+            </span>
         <% end %>
     </ul>
     <form action="<%= tournament_picks_url %>" method="POST" class="form">
@@ -56,7 +61,10 @@
                 name="pick[multiplier]" 
                 value="2" 
                 id="round_id">
-            <label for="round" class="body body--bold">Daily Double</label>
+            <label for="round">
+                <span class="body body--bold">Daily Double</span>
+                <span class="body">(one per round)</span>
+            </label>
         </div>
         <div class="form__row">
             <input type="submit" value="Submit" id="create" class="button">

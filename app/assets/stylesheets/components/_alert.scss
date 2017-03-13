@@ -21,4 +21,9 @@
         border-color: #1abc9c;
         color: $white;
     }
+
+    &--center {
+        display: flex;
+        justify-content: space-around;
+    }
 }
