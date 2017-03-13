@@ -12,6 +12,8 @@ class PicksController < ApplicationController
             user_id: current_user.id
         )
 
+        @current_picks = @entry.picks.select { |pick| pick.round.picks_open? }
+
         @pick = Pick.new
     end
 
@@ -25,6 +27,18 @@ class PicksController < ApplicationController
             flash[:errors] = @pick.errors.full_messages
             redirect_to tournament_picks_url(params[:tournament_id])
         end
+    end
+
+    def destroy
+        pick = Pick.find(params[:id])
+        
+        if pick.user != current_user
+            return
+        end
+        
+        tournament = pick.entry.tournament
+        pick.destroy if pick.round.picks_open?
+        redirect_to tournament_picks_url(tournament)
     end
 
     private

@@ -8,6 +8,7 @@ class Pick < ApplicationRecord
     belongs_to :entry
     belongs_to :round
     belongs_to :team
+    has_one :user, through: :entry
 
   def self.user_picks_per_round(user, round)
     # Pick.where(entry_id: entry.id).where(round_id: round.id).includes(:team)

@@ -20,9 +20,10 @@ Rails.application.routes.draw do
 
   # organization stuff
   resources :tournaments, only: [:index, :show] do 
-    resources :picks
+    resources :picks, only: [:index, :create]
   end
   resources :entries, only: [:create]
+  resources :picks, only: [:destroy]
 
   # game pieces
   resources :teams, only: [:index, :create]

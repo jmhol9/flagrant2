@@ -14,6 +14,9 @@
     </ul>
     <form action="<%= tournament_picks_url %>" method="POST" class="form">
         <%= auth_token %>
+        <span class="body body--bold">
+            New Pick
+        </span>
         <div class="form__row">
             <label for="round" class="input__label">Round</label>
             <select name="pick[round_id]" value="<%= @pick.round_id %>" id="round_id" placeholder="Round" required>
@@ -55,7 +58,7 @@
             <label for="round" class="body body--bold">Daily Double</label>
         </div>
         <div class="form__row">
-            <input type="submit" value="New Pick" id="create" class="button">
+            <input type="submit" value="Submit" id="create" class="button">
         </div>
     </p>
     </form>
@@ -65,8 +68,9 @@
         <td class="table__title">Round</td>
         <td class="table__title">Team</td>
         <td class="table__title table__title--right">Points</td>
+        <td class="table__title table__title--right">Delete?</td>
     </tr>
-    <% @entry.picks.sort_by(&:round).each do |pick| %> 
+    <% @current_picks.sort_by(&:round).each do |pick| %> 
     <tr class="table__row">
         <td class="table__item">
             <%= pick.round.name %> 
@@ -80,6 +84,9 @@
             <% if pick.multiplier == 2 %>
                 <span class="body body--bold"> x2</span>
             <% end %>  
+        </td>
+        <td class="table__item table__item--right">
+            <%= link_to "Delete", pick_url(pick), method: :delete, class: "link" %>
         </td>
     </tr>
     <% end %>
