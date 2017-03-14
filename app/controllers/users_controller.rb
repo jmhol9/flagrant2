@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
     before_action :redirect_unless_logged_out, only: [:new, :create]
-    before_action :redirect_if_logged_out, only: [:show, :index]
+    before_action :redirect_if_logged_out, only: [:show]
+    before_action :redirect_unless_admin, only: [:index]
 
     def index
-        redirect_to tournaments_url
+        @users = User.includes(:entries).all.sort_by { |u| u.entries.length }
     end
 
     def new

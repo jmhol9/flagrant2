@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_unless_admin
-    redirect_to scoreboard_users_url unless admin?
+    redirect_to root_url unless admin?
   end
 
   def redirect_if_picks_closed
