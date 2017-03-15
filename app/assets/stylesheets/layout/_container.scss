@@ -1,6 +1,6 @@
 .container {
     margin: 0 auto;
-    max-width: $content-width--max;
+    max-width: $content-width;
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -8,6 +8,10 @@
     &--homepage {
         color: $white;
         min-height: 100vh;
+    }
+
+    &--wide {
+        max-width: $content-width--wide;
     }
 }
 

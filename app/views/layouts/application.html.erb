@@ -10,7 +10,7 @@
 
   <body class="body<% if external_page? %> body--bg-image<% end %>">
     
-  <div class="container<% if external_page? %> container--homepage<% end %>">
+  <div class="container<% if external_page? %> container--homepage<% end %><% if params[:controller] == 'games' %> container--wide<% end %>">
     <% if params[:controller] != 'statics' %>
       <%= render 'shared/nav' %>
     <% end %>

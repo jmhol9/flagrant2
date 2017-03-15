@@ -5,6 +5,23 @@ class Game < ApplicationRecord
     belongs_to :away_team, class_name: "Team", foreign_key: "away_team_id"
     belongs_to :round
     belongs_to :tournament
+    has_many :results
+
+    def winner
+        winner = results.find { |res| res.win == true }
+
+        return winner.nil? ? nil : winner.team
+    end
+
+    def <=>(game)
+        if self.round_id != game.round_id
+            return self.round_id <=> game.round_id
+        elsif self.winner == nil
+            return -1
+        else
+            return 1
+        end
+    end
 
     private
     def one_game_per_team_per_round

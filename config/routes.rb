@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   # game pieces
   resources :teams, only: [:index, :create]
   resources :games, only: [:index, :create]
+  resources :results, only: [:create]
 
   root to: 'statics#index'
 end
