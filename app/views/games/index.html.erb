@@ -90,42 +90,7 @@
     </tr>
     <% @games.each do |game| %> 
     <tr class="table__row">
-        <td class="table__item">
-            <%= game.round.name %> 
-        </td>
-        <td class="table__item">
-            (<%= game.home_team.seed %>)
-            <%= game.home_team.name %>
-            <% if game.winner.nil? %>
-            <form action="<%= results_url %>" method="POST">
-                <%= auth_token %>
-                <button>(Mark Winner)</button>
-                <input type="hidden" name="result[team_id]" value="<%= game.home_team_id %>">
-                <input type="hidden" name="result[game_id]" value="<%= game.id %>">
-                <input type="hidden" name="result[win]" value="true">
-            </form>
-            <% end %>
-        </td>
-        <td class="table__item">
-            (<%= game.away_team.seed %>) <%= game.away_team.name %> 
-            <% if game.winner.nil? %>
-            <form action="<%= results_url %>" method="POST">
-                <%= auth_token %>
-                <button>(Mark Winner)</button>
-                <input type="hidden" name="result[team_id]" value="<%= game.away_team_id %>">
-                <input type="hidden" name="result[game_id]" value="<%= game.id %>">
-                <input type="hidden" name="result[win]" value="true">
-            </form>
-            <% end %>
-        </td>
-        <td class="table__item">
-            <% if game.results.length == 0 %>
-            <span class="body body--italic">none yet</span>
-            <% end %>
-        </td>
-        <td class="table__item">
-            <%= game.home_team.region %> / <%= game.away_team.region %> 
-        </td>
+
     </tr>
     <% end %>
 </table>
