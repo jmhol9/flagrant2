@@ -29,6 +29,15 @@ class EntriesController < ApplicationController
         redirect_to new_charge_path
     end
 
+    def show
+        entry = Entry.find(params[:id])
+        @user = entry.user
+        @picks = entry.picks
+        if current_user != @user
+            @picks.select { |pick| pick.round.picks_close < DateTime.now }
+        end
+    end
+
     private 
     def entry_params
         params.require(:entry).permit(:tournament_id)

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :tournaments, only: [:index, :show] do 
     resources :picks, only: [:index, :create]
   end
-  resources :entries, only: [:create]
+  resources :entries, only: [:create, :show]
   resources :picks, only: [:destroy]
 
   # game pieces

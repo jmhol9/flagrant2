@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :entries
   has_many :tournaments, through: :entries
   has_many :picks, through: :entries
+  has_many :rounds, through: :picks
 
   attr_reader :password
 

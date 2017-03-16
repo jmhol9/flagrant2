@@ -14,14 +14,6 @@ class Pick < ApplicationRecord
     # Pick.where(entry_id: entry.id).where(round_id: round.id).includes(:team)
   end
 
-  # def result
-  #   Result.where(
-  #     "round_id = ? AND team_id = ?",
-  #     self.round_id,
-  #     self.team_id
-  #     )
-  # end
-
   def game 
     game_one = Game.find_by(round_id: round_id, home_team_id: team_id)
     game_two = Game.find_by(round_id: round_id, away_team_id: team_id)
