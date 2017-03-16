@@ -49,11 +49,11 @@ class Tournament < ApplicationRecord
                     .select{ |pick| !scoring_games.find { |game| game.matches_pick(pick) }.nil? }
 
                 # make a hash of usernames & picks with game:result
-                memo[entry.user] = scoring_picks.select { |pick| !pick.game.results.empty? }
+                memo[entry] = scoring_picks.select { |pick| !pick.game.results.empty? }
                 memo
             end
-            .reduce(Hash.new) do |memo, (user, picks)|
-                memo[user] = picks.map do |pick|
+            .reduce(Hash.new) do |memo, (entry, picks)|
+                memo[entry] = picks.map do |pick|
                     pick_team = team_cache.find { |team| team.id == pick.team_id}
                     {
                         points: pick.points,
@@ -64,11 +64,11 @@ class Tournament < ApplicationRecord
                 end
                 memo
             end
-            .reduce(Hash.new) do |memo, (user, pick_outcomes)|
+            .reduce(Hash.new) do |memo, (entry, pick_outcomes)|
                 pick_payouts_arr = pick_outcomes.map do |pick_outcome|
                     pick_outcome[:result].loss? ? 0 : pick_outcome[:points] * pick_outcome[:multiplier] * pick_outcome[:seed]
                 end
-                memo[user] = pick_payouts_arr.sum
+                memo[entry] = pick_payouts_arr.sum
                 memo
             end
     end
