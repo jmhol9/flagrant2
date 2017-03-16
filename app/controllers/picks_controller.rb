@@ -10,6 +10,12 @@ class PicksController < ApplicationController
         end
 
         @rounds = @tournament.rounds.select { |round| round.picks_open? }.sort
+        if @rounds.length == 0
+            flash[:errors] = "Picks are closed!"
+            redirect_to tournament_url(@tournament)
+            return
+        end
+
         @teams = Team.all.sort_by { |team| team.seed }
         @entry = Entry.includes(:picks).find_by(
             tournament_id: @tournament.id,
