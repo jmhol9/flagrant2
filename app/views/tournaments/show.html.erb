@@ -3,34 +3,8 @@
 </h2>
 
 <% if !@current_user_has_entered %>
-<div class="form form--registration">
-    <p class="body body--margin-0">
-        <span class="body body--bold">
-            ANTE UP.
-        </span>
-        <br />
-            <span>You aren't in this pool yet.</span>
-    </p>
-    <%= form_tag entries_path do %>
-        <article>
-            <% if flash[:error].present? %>
-            <div id="error_explanation">
-                <p><%= flash[:error] %></p>
-            </div>
-            <% end %>
-            <label class="amount">
-            <span class="form__label">Entry: $10</span>
-            </label>
-            <input type="hidden" name="entry[tournament_id]" value="<%= @tournament.id %>" id="tournament_id">
-        </article>
-
-        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                data-description="Enter <%= @tournament.name %>"
-                data-amount="1000"
-                data-locale="auto">
-        </script>
-    <% end %>
+<div class="alert alert--danger">
+    <span class="body body--bold">Entries are closed.</span> But there's always next year.
 </div>
 <% end %>
 
