@@ -3,7 +3,7 @@ class GamesController < ApplicationController
 
     def index 
         @teams = Team.all.sort_by {|team| [team.region, team.seed] }
-        @games = Game.includes(:results, :home_team, :away_team).all.sort
+        @games = Game.includes(:results, :home_team, :away_team).all
         @rounds = Round.all.sort
         @tournaments = Tournament.all
         @game = Game.new
