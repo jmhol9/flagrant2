@@ -54,9 +54,10 @@
     <% @tournament_scores_hash.each_with_index do |(user, score), idx| %> 
     <tr class="table__row">
         <td class="table__item">
+            <% entry = @entries.find { |entry| entry.user_id == user.id } %>
             <span><%= idx + 1 %>. </span>
             <span class="table__team-name">
-                <%= user.team_name%> 
+                <%= link_to user.team_name, entry_url(entry), class: "link" %>
             </span>
             <span class="table__user-name">
                 <%= user.name %> 
