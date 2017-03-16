@@ -40,6 +40,8 @@
         <td class="table__item">
             <% if game.results.length == 0 %>
             <span class="body body--italic">none yet</span>
+            <% else %>
+            <span class="body body--bold"><% game.winner.name %></span>
             <% end %>
         </td>
         <td class="table__item">
