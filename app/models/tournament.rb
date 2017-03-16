@@ -49,7 +49,7 @@ class Tournament < ApplicationRecord
                     .select{ |pick| !scoring_games.find { |game| game.matches_pick(pick) }.nil? }
 
                 # make a hash of usernames & picks with game:result
-                memo[entry.user] = scoring_picks.select { |pick| !pick.game.results.empty? }
+                memo[entry] = scoring_picks.select { |pick| !pick.game.results.empty? }
                 memo
             end
             .reduce(Hash.new) do |memo, (entry, picks)|
