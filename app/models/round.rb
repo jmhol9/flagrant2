@@ -3,7 +3,6 @@ class Round < ApplicationRecord
 
     belongs_to :tournament
     has_many :picks
-    has_many :results
     has_one :dependent_round
 
     def self.reverse_chron

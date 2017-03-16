@@ -23,6 +23,11 @@ class Game < ApplicationRecord
         end
     end
 
+    def matches_pick(pick)
+        round_id == pick.round_id && 
+            (home_team_id == pick.team_id || away_team_id == pick.team_id)
+    end
+
     private
     def one_game_per_team_per_round
         if (Game.where(tournament_id: self.tournament_id, home_team_id: self.home_team_id, round_id: self.round_id).any? || 

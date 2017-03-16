@@ -4,4 +4,12 @@ class Result < ApplicationRecord
 
     belongs_to :team
     belongs_to :game
+
+    def loss?
+        !win
+    end
+    
+    def matches_pick(pick)
+        round_id == pick.round_id && team_id == pick.team_id
+    end
 end

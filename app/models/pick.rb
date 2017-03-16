@@ -22,6 +22,12 @@ class Pick < ApplicationRecord
   #     )
   # end
 
+  def game 
+    game_one = Game.find_by(round_id: round_id, home_team_id: team_id)
+    game_two = Game.find_by(round_id: round_id, away_team_id: team_id)
+    game_one || game_two
+  end
+
   private
   def bet_limit_half_total_points_per_round
     total_points_wagered_round = entry.picks.where(round_id: round_id).sum(:points)
