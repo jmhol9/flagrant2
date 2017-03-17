@@ -1,4 +1,38 @@
 <div class="container__col--single">
+    <% if admin? %>
+    <div>
+        <form action="<%= updates_url %>" method="POST" class="form">
+            <%= auth_token %>
+            <p class="body body--bold">
+                New Update (admin only)
+            </p>
+            <p class="body body--italic">
+                It's gonna be hard to edit these, so edit BEFORE posting.
+            </p>
+            <% if flash[:errors] %>
+                <% flash[:errors].each do |error|%>
+                    <div class="alert alert--danger">
+                        <%= error %>
+                    </div>
+                <% end %>
+            <% end %>
+            <div class="form__row">
+                <input 
+                    type="text" 
+                    name="update[title]" 
+                    value="<%= @update.title %>"
+                    placeholder="Update title">
+            </div>
+            <div class="form__row">
+                <textarea name="update[body]" rows="15" style="width: 100%;" placeholder="Update body"><%= @update.body %></textarea>
+            </div>
+            <div class="form__row">
+                <input type="submit" value="Submit" id="create" class="button">
+            </div>
+        </form>
+    </div>
+    <% end %>
+
     <% @updates.each do |update| %>
         <div class="post">
             <div class="h3"><%= update.title %></div>

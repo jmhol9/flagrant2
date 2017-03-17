@@ -9,6 +9,7 @@
   <% if logged_in? %>
     <%= link_to "Standings", tournament_url(1), class: "nav__link" %>
     <%= link_to "Your Picks", tournament_picks_url(1), class: "nav__link" %>
+    <%= link_to "Blog", updates_url, class: "nav__link" %>
     <%= link_to "Log Out", session_url, method: :delete, class: "nav__link" %>
   <% else %>
     <%= link_to "Log In", new_session_url, class: "nav__link" %>

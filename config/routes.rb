@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :configs, only:[:index]
 
   # blogs / info
-  resources :updates, only: [:index]
+  resources :updates, only: [:index, :create]
   resources :rules, only: [:index]
 
   # organization stuff
