@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
         if @user
             login!(@user)
             tournament = Tournament.first
-            redirect_to tournament_url(tournament)
+            redirect_to tournaments_url
         else
             flash.now[:errors] = ["Invalid email / password combo."]
             render :new

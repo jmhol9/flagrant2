@@ -4,14 +4,14 @@ class PicksController < ApplicationController
     def index
         @tournament = Tournament.find(params[:tournament_id])
         if !current_user.registered?(@tournament)
-            flash[:errors] = "You're not registered for this tournament"
+            flash[:errors] = ["You're not registered for this tournament"]
             redirect_to tournament_url(@tournament)
             return
         end
 
         @rounds = @tournament.rounds.select { |round| round.picks_open? }.sort
         if @rounds.length == 0
-            flash[:errors] = "Picks are closed!"
+            flash[:errors] = ["Picks are closed!"]
             redirect_to tournament_url(@tournament)
             return
         end
