@@ -1,3 +1,38 @@
+<h3 class="h3">New Game</h3>
+<% if flash[:errors] %>
+    <% flash[:errors].each do |error|%>
+        <div class="alert alert--danger">
+            <%= error %>
+        </div>
+    <% end %>
+<% end %>
+<form action="<%= games_url %>" method="POST" class="form">
+    <%= auth_token %>
+    <div class="form__row">
+        <select name="game[home_team_id]">
+            <% @teams.each do |team| %>
+            <option value="<%= team.id %>">(<%= team.seed %>) <%= team.name %></option>
+            <% end %>
+        </select>
+    </div>
+    <div class="form__row">
+        <select name="game[away_team_id]">
+            <% @teams.each do |team| %>
+            <option value="<%= team.id %>">(<%= team.seed %>) <%= team.name %></option>
+            <% end %>
+        </select>
+    </div>
+    <div class="form__row">
+        <select name="game[round_id]">
+            <% @rounds.each do |round| %>
+            <option value="<%= round.id %>"><%= round.name %></option>
+            <% end %>
+        </select>
+    </div>
+    <div class="form__row">
+        <input type="submit" class="button" value="Create Game">
+    </div>
+</form>
 <table class="table">
     <tr class="table__row--title">
         <td class="table__title">Round</td>
