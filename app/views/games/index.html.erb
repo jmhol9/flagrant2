@@ -9,6 +9,7 @@
 <form action="<%= games_url %>" method="POST" class="form">
     <%= auth_token %>
     <div class="form__row">
+        <p class="body body--bold">Home Team</p>
         <select name="game[home_team_id]">
             <% @teams.each do |team| %>
             <option value="<%= team.id %>">(<%= team.seed %>) <%= team.name %></option>
@@ -16,6 +17,7 @@
         </select>
     </div>
     <div class="form__row">
+        <p class="body body--bold">Away Team</p>
         <select name="game[away_team_id]">
             <% @teams.each do |team| %>
             <option value="<%= team.id %>">(<%= team.seed %>) <%= team.name %></option>
@@ -23,6 +25,7 @@
         </select>
     </div>
     <div class="form__row">
+        <p class="body body--bold">Round</p>
         <select name="game[round_id]">
             <% @rounds.each do |round| %>
             <option value="<%= round.id %>"><%= round.name %></option>
