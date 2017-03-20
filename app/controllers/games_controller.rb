@@ -12,7 +12,7 @@ class GamesController < ApplicationController
         @teams = Team.all
             .select { |team| !losses_team_ids.include?(team.id) }
             .sort_by { |team| team.seed }
-        @rounds = [Round.second]
+        @rounds = Round.last(2)
         @tournaments = Tournament.all
     end
 
