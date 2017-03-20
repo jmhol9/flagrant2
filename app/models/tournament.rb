@@ -72,4 +72,13 @@ class Tournament < ApplicationRecord
                 memo
             end
     end
+
+    def self.score_and_cache(tournament) 
+        score_hash = Tournament.score(tournament)
+        score_hash.each do |(user, points)|
+            entry = Entry.find_by(user_id: user.id, tournament_id: tournament.id)
+            entry.points = points
+            entry.save
+        end
+    end
 end

@@ -16,7 +16,12 @@ class PicksController < ApplicationController
             return
         end
 
-        @teams = Team.all.sort_by { |team| team.seed }
+        losses_team_ids = Result.all.select { |result| result.loss? }.map(&:team_id)
+        @teams = Team
+            .all
+            .select { |team| !losses_team_ids.include?(team.id) }
+            .sort_by { |team| team.seed }
+            
         @entry = Entry.includes(:picks).find_by(
             tournament_id: @tournament.id,
             user_id: current_user.id
