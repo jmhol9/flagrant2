@@ -25,10 +25,10 @@
         <td class="table__title">Teams <span class="body body--italic">(<%= @entries.count %> entered)</span></td>
         <td class="table__item table__item--right table__title">Score</td>
     </tr>
-    <% @tournament_scores_hash.each_with_index do |(user, score), idx| %> 
+    <% @entries.each_with_index do |entry, idx| %> 
     <tr class="table__row">
         <td class="table__item">
-            <% entry = @entries.find { |entry| entry.user_id == user.id } %>
+            <% user = @users.find { |user| entry.user_id == user.id } %>
             <span><%= idx + 1 %>. </span>
             <span class="table__team-name">
                 <%= link_to user.team_name, entry_url(entry), class: "link" %>
@@ -41,7 +41,7 @@
             </span>
         </td>
         <td class="table__item table__item--right">
-            <%= score %>
+            <%= entry.points %>
         </td>
     </tr>
     <% end %>

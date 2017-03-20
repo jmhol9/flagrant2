@@ -7,7 +7,6 @@ class TournamentsController < ApplicationController
 
     def show
         @tournament = Tournament.find(params[:id])
-        @tournament_scores_hash = Tournament.score(@tournament).sort_by { |user, score| -score }
         @current_user_has_entered = current_user.tournaments.include?(@tournament)
 
         @entries = @tournament
