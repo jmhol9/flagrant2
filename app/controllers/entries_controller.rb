@@ -34,7 +34,7 @@ class EntriesController < ApplicationController
         @user = entry.user
         @picks = entry.picks
         if current_user != @user
-            @picks.select { |pick| pick.round.picks_close < DateTime.now }
+            @picks = @picks.select { |pick| pick.round.picks_close < DateTime.now }
         end
     end
 
