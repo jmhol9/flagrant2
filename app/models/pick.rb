@@ -69,11 +69,8 @@ class Pick < ApplicationRecord
       return
     end
 
-    existing_round_picks = current_user.picks.select { |pick| pick.round_id == self.round.id }
-    # if existing_round_picks.length >= max_picks 
-    #   errors[:pick] << ": Only #{ max_picks } #{ self.round.name } pick(s) allowed.)"
-    # end
-    if max_picks 
+    existing_round_picks = current_user.picks.select { |pick| pick.round_id == self.round_id }
+    if existing_round_picks.length >= max_picks 
       errors[:pick] << ": Only #{ max_picks } #{ self.round.name } pick(s) allowed.)"
     end
   end
