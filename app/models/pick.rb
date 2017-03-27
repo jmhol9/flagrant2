@@ -3,7 +3,7 @@ class Pick < ApplicationRecord
 
     validates :entry_id, :round_id, :team_id, :points, presence: true
     validates :multiplier, inclusion: { in: [1, 2] }
-    validate :bet_limit_half_total_points_per_round, :one_double_per_round, :one_bet_per_team_per_round, :no_hedge_bets, :no_negative_bets
+    validate :bet_limit_half_total_points_per_round, :one_double_per_round, :one_bet_per_team_per_round, :no_hedge_bets, :no_negative_bets, :limit_max_picks_per_round
 
     belongs_to :entry
     belongs_to :round
