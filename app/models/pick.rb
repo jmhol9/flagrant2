@@ -63,6 +63,17 @@ class Pick < ApplicationRecord
     end
   end
 
+  def limit_max_picks_per_round
+    if round.max_picks.nil?
+      return
+    end
+
+    previous_round_picks = current_user.picks.select { |pick| pick.round_id == round.id }
+    if previous_round_picks.length >= round.max_picks 
+      errors[:pick] << ": Only #{ round.max_picks } #{ round.name } picks allowed.)"
+    end
+  end
+
   def no_hedge_bets
       game_one = Game.find_by(round_id: self.round_id, home_team_id: self.team_id)
       game_two = Game.find_by(round_id: self.round_id, away_team_id: self.team_id)
