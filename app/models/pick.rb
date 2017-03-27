@@ -69,7 +69,7 @@ class Pick < ApplicationRecord
       return
     end
 
-    existing_round_picks = Pick.where(user_id: self.user_id, round_id: self.round_id)
+    existing_round_picks = Pick.where(entry_id: self.entry_id, round_id: self.round_id)
     if existing_round_picks.count >= max_picks 
       errors[:pick] << ": Only #{ max_picks } #{ self.round.name } pick(s) allowed.)"
     end
